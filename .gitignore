@@ -1,4 +1,6 @@
 .idea/
 .venv/
 .env
+.env.db
 _Эталон_решения_-_Docker_compose_.docx
+
