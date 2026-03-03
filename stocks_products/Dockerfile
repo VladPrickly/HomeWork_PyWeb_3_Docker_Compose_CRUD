@@ -1,11 +1,15 @@
-FROM python:3.10
+FROM python:3.9-slim
 
-WORKDIR /usr/src/app
+WORKDIR /app
 
-ADD . /usr/src/app
-
-RUN pip install --upgrade pip
+COPY requirements.txt .
 
 RUN pip install -r requirements.txt
 
-EXPOSE 8000
+COPY . .
+
+RUN python manage.py migrate
+
+EXPOSE 5000
+
+CMD ["gunicorn", "--bind", "0.0.0.0:5000", "stocks_ptoducts.wsgi"]
